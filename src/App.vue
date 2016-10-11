@@ -1,76 +1,32 @@
-<template>
-Horse power:
-<input v-model="car.horsePower"/>
-<br>
+<template> 
+<input v-model="user.name">
+<input type="password" v-model="user.pass">
 
-Price:
-<input v-model="car.price"/>
-<br>
+<button @click="authorize(user.name, user.pass)">Log in</button>
 
- Plate number 
- <span class="plateNumber">
-   {{ car.plateNumber }}
-   </span>
- <br/>
-
- Horse power
- <span class="hp">
-   {{ car.horsePower }}
-   </span>
-<br/>
-
-Kāda ir Edvarda mašīna? = 
-<span class="monster" v-if="isCoolCar(car)">
-  Ahujena
-</span>
-
-<br>
-
-Lēta mašīna? = 
-<span class="leti" v-if="carsPrice(car)">
-  Nice
-</span>
-
+<pre>{{ user | json }}</pre>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      car: {
-        plateNumber: "AA-3333",
-        horsePower: 1200,
-        price: 199,        
+      user: {
+        name: "",
+        pass: ""
       }
-    }    
+    }
   },
   methods: {
-    isCoolCar (car) {
-      return (car.horsePower > 1000)
-    },
-    carsPrice (car) {
-      return (car.price < 200)
+      authorize (username, password) {
+        console.log(password)
+        if (username =="admin" && password == "pass123") {
+          alert("Your are admin")
+      }      
     }
   }
 }
 </script>
 
 <style>
-.plateNumber {
-  color: red;
-  font-weight: bold;
-  }
-.hp {
-  color: blue;
-  font-weight: bold;
-  }
-.leti {
-  color: green;
-  font-weight: bold;
-}
-
-.monster{
-  color: magenta;
-  font-weight: bold;
-}
 </style>
